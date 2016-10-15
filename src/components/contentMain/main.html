@@ -1,0 +1,18 @@
+<div class="one wide column">
+    <div class="ui container"></div>
+</div>
+<div class="fourteen wide column">
+    <div v-show="loading" class="ui active loader"></div>
+    <div class="ui hidden divider"></div>
+
+    <div class="ui icon buttons">
+        <button class="ui icon green button" v-on:click="refresh"><i class="ui refresh icon"></i></button>
+        <button class="ui icon button" v-on:click="add"><i class="ui plus icon"></i></button>
+    </div>
+
+    <check-list v-ref:checks :checks="checks"></check-list>
+</div>
+<div class="one wide column">
+    <div class="ui container">
+    </div>
+</div>

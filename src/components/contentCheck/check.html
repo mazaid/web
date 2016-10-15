@@ -1,0 +1,38 @@
+<div class="two wide column">
+    <div class="ui container">
+
+    </div>
+</div>
+<div class="twelve wide column">
+    <div class="ui container">
+
+        <div v-show="loading" class="ui active loader"></div>
+
+        <div class="ui hidden divider"></div>
+
+        <h2>{{check.title}} <small>({{check.name}})</small></h2>
+
+        <h3>Last check</h3>
+
+        <div class="ui segments">
+            <div class="ui clearing segment" :class="{'red': isFail, 'green': isPass, 'yellow': isWarn, 'inverted': (isPass || isFail || isWarn) }">
+                <div class="ui left floated large header">{{status}} {{finishDate}}</div>
+            </div>
+            <div v-show="message" class="ui clearing segment" :class="{'red': isFail, 'green': isPass, 'yellow': isWarn, 'inverted': (isPass || isFail || isWarn) }">
+                <div class="ui left floated small header">{{message}}</div>
+            </div>
+        </div>
+
+        <div class="ui divider"></div>
+
+        <button class="ui button" v-on:click="toggleDebug">debug</button>
+
+        <code v-show="debugShown"><pre>{{check | json}}</pre></code>
+
+    </div>
+</div>
+<div class="two wide column">
+    <div class="ui container">
+
+    </div>
+</div>

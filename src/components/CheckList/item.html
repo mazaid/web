@@ -1,0 +1,22 @@
+<tr :class="{positive: status === 'pass', negative: status == 'fail'}" v-on:mouseover="mouseover" v-on:mouseleave="mouseleave">
+    <td>
+        <a href="/checks/{{item.name}}" v-on:click="navigate($event)">{{item.name}}</a>
+    </td>
+    <td>
+        {{item.title}}
+    </td>
+    <td>{{item.checker}}</td>
+    <td>
+        <strong>{{status}}</strong> {{finishDate}}
+    </td>
+    <td>
+        {{message}}
+    </td>
+    <td>
+        <i v-show="over && !started" class="play icon" style="cursor: pointer;" v-on:click="start"></i>
+        <div v-show="started" class="ui active centered small inline loader"></div>
+        <!-- <button v-show="over" class="ui icon small button"><i class="play icon"></i></button> -->
+    </td>
+
+</tr>
+<!-- <tr><td>{{item | json}}</td></tr> -->
