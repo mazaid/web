@@ -26,11 +26,13 @@ module.exports = Abstract.extend({
     components: {
         item: Abstract.extend({
             template: require('./item.html'),
+
             props: {
                 item: null,
                 over: false,
                 started: false
             },
+
             methods: {
                 mouseover: function () {
                     this.over = true;
@@ -50,13 +52,19 @@ module.exports = Abstract.extend({
                             that.logError(error);
                         });
 
+                },
+
+                edit: function () {
+                    this.loadUrl('/edit/' + this.item.name);
                 }
             },
+
             ready: function () {
-                if (this.item.checkTask.status !== 'finished') {
+                if (this.item.checkTask && this.item.checkTask.status !== 'finished') {
                     this.started = true;
                 }
             },
+
             computed: {
                 status: function () {
                     var taskStatus = _get(this.item, 'checkTask.status', null);

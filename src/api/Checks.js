@@ -97,7 +97,49 @@ var Checks = Abstract.extends({
             });
         });
 
-    }
+    },
+
+    add: function (data) {
+        var that = this;
+
+        return new Promise(function (resolve, reject) {
+            var request = superagent.post(that._base + '/checks');
+
+            request.send(data);
+
+            request.end(function (err, res) {
+                if (err) {
+                    return reject(err);
+                }
+
+                var body = res.body;
+
+                resolve(res.body.result);
+            });
+        });
+
+    },
+
+    update: function (name, data) {
+    var that = this;
+
+    return new Promise(function (resolve, reject) {
+        var request = superagent.patch(that._base + '/checks/' + name);
+
+        request.send(data);
+
+        request.end(function (err, res) {
+            if (err) {
+                return reject(err);
+            }
+
+            var body = res.body;
+
+            resolve(res.body.result);
+        });
+    });
+
+}
 
 });
 

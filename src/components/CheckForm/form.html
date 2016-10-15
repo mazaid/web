@@ -1,0 +1,50 @@
+<style>
+    #data {
+        position: absolute;
+        width: 100%;
+        height: 300px;
+    }
+
+    .padding {
+        padding-bottom: 300px;
+    }
+</style>
+
+<form class="ui form" v-on:submit="nothing($event)">
+
+    <div class="field">
+        <label>Name</label>
+        <input type="text" name="name" placeholder="Name" v-model="form.name">
+    </div>
+
+    <div class="field">
+        <label>Title</label>
+        <input type="text" name="title" placeholder="Title" v-model="form.title">
+    </div>
+
+    <div class="field">
+
+        <label>Checker</label>
+
+        <select class="ui fluid dropdown" v-model="form.checker">
+            <option value="ping">ping</option>
+            <option value="http">http</option>
+        </select>
+    </div>
+
+    <div class="field padding">
+        <label>Data</label>
+        <div id="data"></div>
+    </div>
+
+    <button class="ui button" type="submit" v-on:click="submit($event)">{{submitButtonTitle}}</button>
+
+    <div class="ui hidden divider"></div>
+
+    <button class="ui button" v-if="debug" v-on:click="toggleDebug($event)">debug</button>
+
+    <div v-if="debug" v-show="showDebug">
+        <pre>{{form | json}}</pre>
+    </div>
+
+</form>

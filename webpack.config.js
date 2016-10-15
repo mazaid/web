@@ -8,12 +8,12 @@ module.exports = {
         ]
     },
     entry: {
-        app: "./src/app.js"
+        app: './src/app.js'
     },
     devtool: 'source-map',
     output: {
-        path: "./public/static/app/",
-        publicPath: "/public/static/app/",
+        path: './public/static/app/',
+        publicPath: '/public/static/app/',
         filename: '[name].bundle.js',
         chunkFilename: '[name].bundle.js'
     },
@@ -23,7 +23,7 @@ module.exports = {
             loader: 'style!css'
         }, {
             test: /\.html$/,
-            loader: "html"
+            loader: 'html'
         }, {
             test: /\.json$/,
             loader: 'json-loader'

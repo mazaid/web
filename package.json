@@ -20,6 +20,8 @@
   },
   "homepage": "https://github.com/mazaid/web#readme",
   "dependencies": {
+    "ace": "git+https://github.com/ajaxorg/ace.git#master",
+    "ace-builds": "^1.2.5",
     "bluebird": "3.4.6",
     "body-parser": "1.15.2",
     "data-combiner": "^0.3.1",

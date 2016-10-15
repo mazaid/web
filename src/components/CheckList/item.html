@@ -14,6 +14,7 @@
     </td>
     <td>
         <i v-show="over && !started" class="play icon" style="cursor: pointer;" v-on:click="start"></i>
+        <i v-show="over && !started" class="pencil icon" style="cursor: pointer;" v-on:click="edit"></i>
         <div v-show="started" class="ui active centered small inline loader"></div>
         <!-- <button v-show="over" class="ui icon small button"><i class="play icon"></i></button> -->
     </td>

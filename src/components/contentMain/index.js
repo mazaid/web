@@ -46,6 +46,10 @@ module.exports = Abstract.extend({
                 .catch(function (error) {
                     that.logError(error);
                 });
+        },
+
+        add: function () {
+            this.loadUrl('/add');
         }
     },
 

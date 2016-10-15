@@ -1,0 +1,29 @@
+<div class="one wide column">
+    <div class="ui container"></div>
+</div>
+<div class="fourteen wide column">
+
+    <div v-show="loading" class="ui active loader"></div>
+
+    <div class="ui hidden divider"></div>
+
+    <div class="ui grid">
+        <div class="row">
+            <div class="three wide column"></div>
+
+            <div class="ten wide column">
+
+                <div class="ui header">add new check</div>
+
+                <add-form :form="form" :debug="true" v-on:submit="add"></add-form>
+
+            </div>
+
+        </div>
+    </div>
+
+</div>
+<div class="one wide column">
+    <div class="ui container">
+    </div>
+</div>
