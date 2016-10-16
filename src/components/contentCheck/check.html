@@ -25,9 +25,17 @@
 
         <div class="ui divider"></div>
 
+        <div class="ui small header">checkTask.result</div>
+
+        <div class="ui segment"><pre>{{checkTaskResult | json}}</pre></div>
+
+        <div class="ui small header">execTask.result</div>
+
+        <div class="ui segment"><pre>{{execTaskResult | json}}</pre></div>
+
         <button class="ui button" v-on:click="toggleDebug">debug</button>
 
-        <code v-show="debugShown"><pre>{{check | json}}</pre></code>
+        <div class="ui segment" v-show="debugShown"><pre>{{check | json}}</pre></div>
 
     </div>
 </div>

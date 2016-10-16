@@ -45243,13 +45243,13 @@ module.exports = function (index, step) {
 /* 169 */
 /***/ function(module, exports) {
 
-module.exports = "<tr :class=\"{positive: status === 'pass', negative: status == 'fail'}\" v-on:mouseover=\"mouseover\" v-on:mouseleave=\"mouseleave\">\n    <td>\n        <a href=\"/checks/{{item.name}}\" v-on:click=\"navigate($event)\">{{item.name}}</a>\n    </td>\n    <td>\n        {{item.title}}\n    </td>\n    <td>{{item.checker}}</td>\n    <td>\n        <strong>{{status}}</strong> {{finishDate}}\n    </td>\n    <td>\n        {{message}}\n    </td>\n    <td>\n        <i v-show=\"over && !started\" class=\"play icon\" style=\"cursor: pointer;\" v-on:click=\"start\"></i>\n        <i v-show=\"over && !started\" class=\"pencil icon\" style=\"cursor: pointer;\" v-on:click=\"edit\"></i>\n        <div v-show=\"started\" class=\"ui active centered small inline loader\"></div>\n        <!-- <button v-show=\"over\" class=\"ui icon small button\"><i class=\"play icon\"></i></button> -->\n    </td>\n\n</tr>\n<!-- <tr><td>{{item | json}}</td></tr> -->";
+module.exports = "<tr :class=\"{positive: status === 'pass', negative: status == 'fail'}\" v-on:mouseover=\"mouseover\" v-on:mouseleave=\"mouseleave\">\n    <td>\n        <a href=\"/checks/{{item.name}}\" v-on:click=\"navigate($event)\">{{item.name}}</a>\n    </td>\n    <td>\n        {{item.title}}\n    </td>\n    <td>\n        {{item.checker}}\n    </td>\n    <td>\n        <div v-show=\"started\" class=\"ui active mini inline loader\"></div>\n        <span><strong>{{status}}</strong> {{finishDate}}</span>\n    </td>\n    <td>\n        {{message}}\n    </td>\n    <td>\n        <i v-show=\"over && !started\" class=\"play icon\" style=\"cursor: pointer;\" v-on:click=\"start\"></i>\n        <i v-show=\"over\" class=\"pencil icon\" style=\"cursor: pointer;\" v-on:click=\"edit\"></i>\n        <!-- <button v-show=\"over\" class=\"ui icon small button\"><i class=\"play icon\"></i></button> -->\n    </td>\n\n</tr>\n\n<!-- <tr><td>{{item | json}}</td></tr> -->";
 
 /***/ },
 /* 170 */
 /***/ function(module, exports) {
 
-module.exports = "<table class=\"ui selectable celled table\" v-if=\"checks.length\">\n        <thead>\n            <tr>\n                <th class=\"two wide\">name</th>\n                <th class=\"two wide\">title</th>\n                <th class=\"two wide\">checker</th>\n                <th class=\"three wide\">last check</th>\n                <th>message</th>\n                <th class=\"one wide\"></th>\n            </tr>\n        </thead>\n        <tbody\n            is=\"item\"\n            v-for=\"item in checks\"\n            :item=\"item\"\n        </tbody>\n\n</table>";
+module.exports = "<table class=\"ui selectable celled table\" v-if=\"checks.length\">\n        <thead>\n            <tr>\n                <th class=\"two wide\">name</th>\n                <th class=\"two wide\">title</th>\n                <th class=\"two wide\">checker</th>\n                <th class=\"three wide\">last check</th>\n                <th>message</th>\n                <th class=\"one wide\"></th>\n            </tr>\n        </thead>\n        <tbody\n            is=\"item\"\n            v-for=\"item in checks\"\n            :item=\"item\"\n        </tbody>\n\n</table>\n";
 
 /***/ },
 /* 171 */
@@ -45268,7 +45268,7 @@ module.exports = "<div class=\"ui fluid container full-height\" id=\"top\" style
 /* 174 */
 /***/ function(module, exports) {
 
-module.exports = "<div class=\"two wide column\">\n    <div class=\"ui container\">\n\n    </div>\n</div>\n<div class=\"twelve wide column\">\n    <div class=\"ui container\">\n\n        <div v-show=\"loading\" class=\"ui active loader\"></div>\n\n        <div class=\"ui hidden divider\"></div>\n\n        <h2>{{check.title}} <small>({{check.name}})</small></h2>\n\n        <h3>Last check</h3>\n\n        <div class=\"ui segments\">\n            <div class=\"ui clearing segment\" :class=\"{'red': isFail, 'green': isPass, 'yellow': isWarn, 'inverted': (isPass || isFail || isWarn) }\">\n                <div class=\"ui left floated large header\">{{status}} {{finishDate}}</div>\n            </div>\n            <div v-show=\"message\" class=\"ui clearing segment\" :class=\"{'red': isFail, 'green': isPass, 'yellow': isWarn, 'inverted': (isPass || isFail || isWarn) }\">\n                <div class=\"ui left floated small header\">{{message}}</div>\n            </div>\n        </div>\n\n        <div class=\"ui divider\"></div>\n\n        <button class=\"ui button\" v-on:click=\"toggleDebug\">debug</button>\n\n        <code v-show=\"debugShown\"><pre>{{check | json}}</pre></code>\n\n    </div>\n</div>\n<div class=\"two wide column\">\n    <div class=\"ui container\">\n\n    </div>\n</div>";
+module.exports = "<div class=\"two wide column\">\n    <div class=\"ui container\">\n\n    </div>\n</div>\n<div class=\"twelve wide column\">\n    <div class=\"ui container\">\n\n        <div v-show=\"loading\" class=\"ui active loader\"></div>\n\n        <div class=\"ui hidden divider\"></div>\n\n        <h2>{{check.title}} <small>({{check.name}})</small></h2>\n\n        <h3>Last check</h3>\n\n        <div class=\"ui segments\">\n            <div class=\"ui clearing segment\" :class=\"{'red': isFail, 'green': isPass, 'yellow': isWarn, 'inverted': (isPass || isFail || isWarn) }\">\n                <div class=\"ui left floated large header\">{{status}} {{finishDate}}</div>\n            </div>\n            <div v-show=\"message\" class=\"ui clearing segment\" :class=\"{'red': isFail, 'green': isPass, 'yellow': isWarn, 'inverted': (isPass || isFail || isWarn) }\">\n                <div class=\"ui left floated small header\">{{message}}</div>\n            </div>\n        </div>\n\n        <div class=\"ui divider\"></div>\n\n        <div class=\"ui small header\">checkTask.result</div>\n\n        <div class=\"ui segment\"><pre>{{checkTaskResult | json}}</pre></div>\n\n        <div class=\"ui small header\">execTask.result</div>\n\n        <div class=\"ui segment\"><pre>{{execTaskResult | json}}</pre></div>\n\n        <button class=\"ui button\" v-on:click=\"toggleDebug\">debug</button>\n\n        <div class=\"ui segment\" v-show=\"debugShown\"><pre>{{check | json}}</pre></div>\n\n    </div>\n</div>\n<div class=\"two wide column\">\n    <div class=\"ui container\">\n\n    </div>\n</div>";
 
 /***/ },
 /* 175 */
@@ -55091,7 +55091,11 @@ var Checks = Abstract.extends({
         var that = this;
 
         return new Promise(function (resolve, reject) {
-            var request = superagent.get(that._base + '/checks/' + name).query({withCheckTasks: true});
+            var params = {
+                withCheckTasks: true,
+                withExecTasks: true
+            };
+            var request = superagent.get(that._base + '/checks/' + name).query(params);
 
             request.end(function (error, res) {
 
@@ -55102,6 +55106,7 @@ var Checks = Abstract.extends({
                 var check = res.body.result;
 
                 check.checkTask = _.get(res.body, 'metadata.checkTask', null);
+                check.execTask  = _.get(res.body, 'metadata.execTask', null);
 
                 resolve(check);
 
@@ -55350,6 +55355,7 @@ module.exports = Abstract.extend({
                 name: null,
                 title: null,
                 checker: 'http',
+                timeout: 60,
                 data: null
             }
         };
@@ -55394,6 +55400,7 @@ module.exports = Abstract.extend({
     data: function() {
         return {
             loading: false,
+
             check: {
                 title: null,
                 name: null
@@ -55403,7 +55410,10 @@ module.exports = Abstract.extend({
             isFail: false,
             isWarn: false,
 
-            debugShown: false
+            debugShown: false,
+
+            checkTaskResult: null,
+            execTaskResult: null
 
         };
     },
@@ -55416,6 +55426,8 @@ module.exports = Abstract.extend({
         this.getApi().checks.getByName(req.params.name)
             .then(function (check) {
                 that.check = check;
+                that.checkTaskResult = _get(check, 'checkTask.result', null);
+                that.execTaskResult = _get(check, 'execTask.result', null);
                 that.processStatus();
             })
             .catch(function (error) {
@@ -55668,7 +55680,7 @@ page({click: false});
 /* 289 */
 /***/ function(module, exports) {
 
-module.exports = "<style>\n    #data {\n        position: absolute;\n        width: 100%;\n        height: 300px;\n    }\n\n    .padding {\n        padding-bottom: 300px;\n    }\n</style>\n\n<form class=\"ui form\" v-on:submit=\"nothing($event)\">\n\n    <div class=\"field\">\n        <label>Name</label>\n        <input type=\"text\" name=\"name\" placeholder=\"Name\" v-model=\"form.name\">\n    </div>\n\n    <div class=\"field\">\n        <label>Title</label>\n        <input type=\"text\" name=\"title\" placeholder=\"Title\" v-model=\"form.title\">\n    </div>\n\n    <div class=\"field\">\n\n        <label>Checker</label>\n\n        <select class=\"ui fluid dropdown\" v-model=\"form.checker\">\n            <option value=\"ping\">ping</option>\n            <option value=\"http\">http</option>\n        </select>\n    </div>\n\n    <div class=\"field padding\">\n        <label>Data</label>\n        <div id=\"data\"></div>\n    </div>\n\n    <button class=\"ui button\" type=\"submit\" v-on:click=\"submit($event)\">{{submitButtonTitle}}</button>\n\n    <div class=\"ui hidden divider\"></div>\n\n    <button class=\"ui button\" v-if=\"debug\" v-on:click=\"toggleDebug($event)\">debug</button>\n\n    <div v-if=\"debug\" v-show=\"showDebug\">\n        <pre>{{form | json}}</pre>\n    </div>\n\n</form>\n";
+module.exports = "<style>\n    #data {\n        position: absolute;\n        width: 100%;\n        height: 300px;\n    }\n\n    .padding {\n        padding-bottom: 300px;\n    }\n</style>\n\n<form class=\"ui form\" v-on:submit=\"nothing($event)\">\n\n    <div class=\"field\">\n        <label>Name</label>\n        <input type=\"text\" name=\"name\" placeholder=\"Name\" v-model=\"form.name\">\n    </div>\n\n    <div class=\"field\">\n        <label>Title</label>\n        <input type=\"text\" name=\"title\" placeholder=\"Title\" v-model=\"form.title\">\n    </div>\n\n    <div class=\"field\">\n\n        <label>Checker</label>\n\n        <select class=\"ui fluid dropdown\" v-model=\"form.checker\">\n            <option value=\"ping\">ping</option>\n            <option value=\"http\">http</option>\n        </select>\n    </div>\n\n    <div class=\"field\">\n        <label>Timeout</label>\n        <input type=\"text\" name=\"timeout\" placeholder=\"timeout\" v-model=\"form.timeout\">\n    </div>\n\n    <div class=\"field padding\">\n        <label>Data</label>\n        <div id=\"data\"></div>\n    </div>\n\n    <button class=\"ui button\" type=\"submit\" v-on:click=\"submit($event)\">{{submitButtonTitle}}</button>\n\n    <div class=\"ui hidden divider\"></div>\n\n    <button class=\"ui button\" v-if=\"debug\" v-on:click=\"toggleDebug($event)\">debug</button>\n\n    <div v-if=\"debug\" v-show=\"showDebug\">\n        <pre>{{form | json}}</pre>\n    </div>\n\n</form>\n";
 
 /***/ },
 /* 290 */
@@ -55685,6 +55697,7 @@ module.exports = Abstract.extend({
                 name: null,
                 title: null,
                 checker: null,
+                timeout: 60,
                 data: null
             }
         },
@@ -55819,6 +55832,7 @@ module.exports = Abstract.extend({
                 name: form.name,
                 title: form.title,
                 checker: form.checker,
+                timeout: form.timeout,
                 data: form.data
             };
 

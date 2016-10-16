@@ -44,6 +44,7 @@ module.exports = Abstract.extend({
                 name: form.name,
                 title: form.title,
                 checker: form.checker,
+                timeout: form.timeout,
                 data: form.data
             };
 

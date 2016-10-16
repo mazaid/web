@@ -9,6 +9,7 @@ module.exports = Abstract.extend({
                 name: null,
                 title: null,
                 checker: 'http',
+                timeout: 60,
                 data: null
             }
         };

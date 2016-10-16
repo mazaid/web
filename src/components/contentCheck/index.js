@@ -9,6 +9,7 @@ module.exports = Abstract.extend({
     data: function() {
         return {
             loading: false,
+
             check: {
                 title: null,
                 name: null
@@ -18,7 +19,10 @@ module.exports = Abstract.extend({
             isFail: false,
             isWarn: false,
 
-            debugShown: false
+            debugShown: false,
+
+            checkTaskResult: null,
+            execTaskResult: null
 
         };
     },
@@ -31,6 +35,8 @@ module.exports = Abstract.extend({
         this.getApi().checks.getByName(req.params.name)
             .then(function (check) {
                 that.check = check;
+                that.checkTaskResult = _get(check, 'checkTask.result', null);
+                that.execTaskResult = _get(check, 'execTask.result', null);
                 that.processStatus();
             })
             .catch(function (error) {

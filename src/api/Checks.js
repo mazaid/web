@@ -30,7 +30,11 @@ var Checks = Abstract.extends({
         var that = this;
 
         return new Promise(function (resolve, reject) {
-            var request = superagent.get(that._base + '/checks/' + name).query({withCheckTasks: true});
+            var params = {
+                withCheckTasks: true,
+                withExecTasks: true
+            };
+            var request = superagent.get(that._base + '/checks/' + name).query(params);
 
             request.end(function (error, res) {
 
@@ -41,6 +45,7 @@ var Checks = Abstract.extends({
                 var check = res.body.result;
 
                 check.checkTask = _.get(res.body, 'metadata.checkTask', null);
+                check.execTask  = _.get(res.body, 'metadata.execTask', null);
 
                 resolve(check);
 
