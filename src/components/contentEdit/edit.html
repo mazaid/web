@@ -21,6 +21,20 @@
                     :debug="true"
                     v-on:submit="update"></edit-form>
 
+                    <div class="ui divider"></div>
+
+                    <div class="ui small header">checkTask.result</div>
+
+                    <div class="ui segment"><pre>{{checkTaskResult | json}}</pre></div>
+
+                    <div class="ui small header">checkTask.rawResult</div>
+
+                    <div class="ui segment"><pre>{{checkTaskRawResult | json}}</pre></div>
+
+                    <div class="ui small header">execTask.result</div>
+
+                    <div class="ui segment"><pre>{{execTaskResult | json}}</pre></div>
+
             </div>
 
         </div>

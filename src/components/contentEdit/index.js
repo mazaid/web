@@ -1,5 +1,7 @@
 var Abstract = require('../Abstract');
 
+var _get = require('lodash/get');
+
 module.exports = Abstract.extend({
     template: require('./edit.html'),
 
@@ -10,8 +12,13 @@ module.exports = Abstract.extend({
                 name: null,
                 title: null,
                 checker: 'http',
-                data: null
-            }
+                data: null,
+                userAnalyzeFn: null
+            },
+
+            checkTaskResult: null,
+            checkTaskRawResult: null,
+            execTaskResult: null
         };
     },
 
@@ -25,6 +32,10 @@ module.exports = Abstract.extend({
             .then(function (check) {
                 that.name = name;
                 that.form = check;
+
+                that.checkTaskResult = _get(check, 'checkTask.result', null);
+                that.checkTaskRawResult = _get(check, 'checkTask.rawResult', null);
+                that.execTaskResult = _get(check, 'execTask.result', null);
             })
             .catch(function (error) {
                 that.processError(error);
@@ -45,7 +56,8 @@ module.exports = Abstract.extend({
                 title: form.title,
                 checker: form.checker,
                 timeout: form.timeout,
-                data: form.data
+                data: form.data,
+                userAnalyzeFn: form.userAnalyzeFn
             };
 
             this.getApi().checks.update(this.name, update)

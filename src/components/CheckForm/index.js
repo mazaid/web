@@ -10,7 +10,8 @@ module.exports = Abstract.extend({
                 title: null,
                 checker: null,
                 timeout: 60,
-                data: null
+                data: null,
+                userAnalyzeFn: null
             }
         },
         debug: false,
@@ -32,6 +33,10 @@ module.exports = Abstract.extend({
             if (this.form.data) {
                 this.dataStringValue = JSON.stringify(this.form.data, null, '    ');
                 this._editor.setValue(this.dataStringValue, -1);
+            }
+
+            if (this.form.userAnalyzeFn) {
+                this._userAnalyzeFnEditor.setValue(this.form.userAnalyzeFn, -1);
             }
         }
 
@@ -61,6 +66,32 @@ module.exports = Abstract.extend({
             } catch (e) {
 
             }
+        });
+
+        this._userAnalyzeFnEditor = ace.edit('userAnalyzeFn');
+        var JavaScriptMode = ace.require('ace/mode/javascript').Mode;
+
+        this._userAnalyzeFnEditor.session.setMode(new JavaScriptMode());
+        this._userAnalyzeFnEditor.renderer.setShowGutter(true);
+        this._userAnalyzeFnEditor.setShowPrintMargin(false);
+
+        if (this.form.userAnalyzeFn) {
+            this._userAnalyzeFnEditor.setValue(this.form.userAnalyzeFn, -1);
+        }
+
+        this._userAnalyzeFnEditor.on('change', function() {
+            var value = that._userAnalyzeFnEditor.getValue();
+
+            if (typeof value === 'string') {
+                value = value.trim();
+            }
+
+            if (value) {
+                that.form.userAnalyzeFn = value;
+            } else {
+                that.form.userAnalyzeFn = null;
+            }
+
         });
 
     },

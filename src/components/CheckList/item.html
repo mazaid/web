@@ -1,4 +1,4 @@
-<tr :class="{positive: status === 'pass', negative: status == 'fail'}" v-on:mouseover="mouseover" v-on:mouseleave="mouseleave">
+<tr :class="{positive: status === 'pass', negative: status === 'fail', warning: status === 'warn'}" v-on:mouseover="mouseover" v-on:mouseleave="mouseleave">
     <td>
         <a href="/checks/{{item.name}}" v-on:click="navigate($event)">{{item.name}}</a>
     </td>
