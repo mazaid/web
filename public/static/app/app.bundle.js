@@ -55427,19 +55427,18 @@ module.exports = Abstract.extend({
 
             computed: {
                 status: function () {
-                    var taskStatus = _get(this.item, 'checkTask.status', null);
+                    // var taskStatus = _get(this.item, 'checkTask.status', null);
+                    // if (['created', 'started', 'queued'].indexOf(taskStatus) > -1) {
+                    //     return 'in progress';
+                    // }
 
-                    if (['created', 'started', 'queued'].indexOf(taskStatus) > -1) {
-                        return 'in progress';
-                    }
-
-                    var status = _get(this.item, 'checkTask.result.status', '-');
+                    var status = _get(this.item, 'checkTask.result.status', '');
 
                     return status;
                 },
 
                 message: function () {
-                    return _get(this.item, 'checkTask.result.message', '-');
+                    return _get(this.item, 'checkTask.result.message', '');
                 },
 
                 finishDate: function () {
