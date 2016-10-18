@@ -55814,6 +55814,8 @@ module.exports = Abstract.extend({
 
 var _ = __webpack_require__(12);
 
+var request = __webpack_require__(148);
+
 var qs = __webpack_require__(154);
 
 var Vue = __webpack_require__(156);
@@ -55832,67 +55834,73 @@ _.each(contentComponents, function (component, name) {
     Vue.component(name, component);
 });
 
-var config = {
-
-    base: '/api',
-
-    api: {
-
-    }
-
-};
-
-var Api = __webpack_require__(157);
-
-var api = Api(config);
-
 var logger = __webpack_require__(152);
 
-var page = __webpack_require__(153);
-
-var app = new Vue(Abstract.extend({
-    el: $('._body').get(0),
-    template: __webpack_require__(151),
-    compiled: function () {
-        this._api = api;
-        this._logger = logger;
-        this._router = page;
-        this._request = null;
-    },
-    data: function () {
-        return {
-            contentComponent: 'empty-page',
-            authToken: null
-        };
-    },
-    components: {
-        page: __webpack_require__(158)
-    }
-}));
-
-var createRoute = function (route, app) {
-
-    return function (req) {
-
-        req.query = qs.parse(req.querystring);
-        app._request = req;
-
-        if (app.contentComponent == route.component &&
-            app.$refs.page.$refs.contentComponent.initData
-        ) {
-            app.$refs.page.$refs.contentComponent.initData();
-        } else {
-            app.contentComponent = route.component;
+request.get('/feConfig')
+    .end(function (err, res) {
+        if (err) {
+            logger.error(err);
+            return;
         }
+
+        var config = res.body;
+
+        init(config);
+    });
+
+function init(config) {
+
+    var Api = __webpack_require__(157);
+
+    var api = Api(config);
+
+    var page = __webpack_require__(153);
+
+    var app = new Vue(Abstract.extend({
+        el: $('._body').get(0),
+        template: __webpack_require__(151),
+        compiled: function () {
+            this._api = api;
+            this._logger = logger;
+            this._router = page;
+            this._request = null;
+        },
+        data: function () {
+            return {
+                contentComponent: 'empty-page',
+                authToken: null
+            };
+        },
+        components: {
+            page: __webpack_require__(158)
+        }
+    }));
+
+    var createRoute = function (route, app) {
+
+        return function (req) {
+
+            req.query = qs.parse(req.querystring);
+            app._request = req;
+
+            if (app.contentComponent == route.component &&
+                app.$refs.page.$refs.contentComponent.initData
+            ) {
+                app.$refs.page.$refs.contentComponent.initData();
+            } else {
+                app.contentComponent = route.component;
+            }
+        };
+
     };
 
-};
+    _.each(routes, function (route) {
+        page(route.route, createRoute(route, app));
+    });
 
-_.each(routes, function (route) {
-    page(route.route, createRoute(route, app));
-});
+    page({click: false});
 
-page({click: false});
+}
 
 
 /***/ }
