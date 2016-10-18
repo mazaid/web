@@ -20,11 +20,11 @@ _.each(contentComponents, function (component, name) {
 
 var config = {
 
-    base: 'http://localhost:8080/api',
+    base: '/api',
 
     api: {
 
-    },
+    }
 
 };
 

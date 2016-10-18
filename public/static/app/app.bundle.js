@@ -45404,13 +45404,13 @@ module.exports = "<div class=\"one wide column\">\n    <div class=\"ui container
 /* 176 */
 /***/ function(module, exports) {
 
-module.exports = "<div class=\"two wide column\">\n    <div class=\"ui container\">\n\n    </div>\n</div>\n<div class=\"twelve wide column\">\n    <div class=\"ui container\">\n\n        <div v-show=\"loading\" class=\"ui active loader\"></div>\n\n        <div class=\"ui hidden divider\"></div>\n\n        <h2>{{check.title}} <small>({{check.name}})</small></h2>\n\n        <h3>Last check</h3>\n\n        <div class=\"ui segments\">\n            <div class=\"ui clearing segment\" :class=\"{'red': isFail, 'green': isPass, 'yellow': isWarn, 'inverted': (isPass || isFail || isWarn) }\">\n                <div class=\"ui left floated large header\">{{status}} {{finishDate}}</div>\n            </div>\n            <div v-show=\"message\" class=\"ui clearing segment\" :class=\"{'red': isFail, 'green': isPass, 'yellow': isWarn, 'inverted': (isPass || isFail || isWarn) }\">\n                <div class=\"ui left floated small header\">{{message}}</div>\n            </div>\n        </div>\n\n        <div class=\"ui divider\"></div>\n\n        <div class=\"ui small header\">checkTask.result</div>\n\n        <div class=\"ui segment\"><pre>{{checkTaskResult | json}}</pre></div>\n\n        <div class=\"ui small header\">execTask.result</div>\n\n        <div class=\"ui segment\"><pre>{{execTaskResult | json}}</pre></div>\n\n        <button class=\"ui button\" v-on:click=\"toggleDebug\">debug</button>\n\n        <div class=\"ui segment\" v-show=\"debugShown\"><pre>{{check | json}}</pre></div>\n\n    </div>\n</div>\n<div class=\"two wide column\">\n    <div class=\"ui container\">\n\n    </div>\n</div>";
+module.exports = "<div class=\"two wide column\">\n    <div class=\"ui container\">\n\n    </div>\n</div>\n<div class=\"twelve wide column\">\n    <div class=\"ui container\">\n\n        <div v-show=\"loading\" class=\"ui active loader\"></div>\n\n        <div class=\"ui hidden divider\"></div>\n\n        <h2>{{check.title}} <small>({{check.name}})</small></h2>\n\n        <h3>Last check</h3>\n\n        <div class=\"ui segments\">\n            <div class=\"ui clearing segment\" :class=\"{'red': isFail, 'green': isPass, 'yellow': isWarn, 'inverted': (isPass || isFail || isWarn) }\">\n                <div class=\"ui left floated large header\">{{status}} {{finishDate}}</div>\n            </div>\n            <div v-show=\"message\" class=\"ui clearing segment\" :class=\"{'red': isFail, 'green': isPass, 'yellow': isWarn, 'inverted': (isPass || isFail || isWarn) }\">\n                <div class=\"ui left floated small header\">{{message}}</div>\n            </div>\n        </div>\n\n        <div class=\"ui divider\"></div>\n\n        <div class=\"ui small header\">check.data</div>\n\n        <div class=\"ui segment\"><pre>{{check.data | json}}</pre></div>\n\n        <div class=\"ui small header\">userAnalyzeFn</div>\n\n        <div class=\"ui segment\"><pre>{{check.userAnalyzeFn}}</pre></div>\n\n        <div class=\"ui small header\">checkTask.result</div>\n\n        <div class=\"ui segment\"><pre>{{checkTaskResult | json}}</pre></div>\n\n        <div class=\"ui small header\">checkTask.rawResult</div>\n\n        <div class=\"ui segment\"><pre>{{checkTaskRawResult | json}}</pre></div>\n\n        <div class=\"ui small header\">execTask.result</div>\n\n        <div class=\"ui segment\"><pre>{{execTaskResult | json}}</pre></div>\n\n        <button class=\"ui button\" v-on:click=\"toggleDebug\">debug</button>\n\n        <div class=\"ui segment\" v-show=\"debugShown\"><pre>{{check | json}}</pre></div>\n\n    </div>\n</div>\n<div class=\"two wide column\">\n    <div class=\"ui container\">\n\n    </div>\n</div>";
 
 /***/ },
 /* 177 */
 /***/ function(module, exports) {
 
-module.exports = "<div class=\"one wide column\">\n    <div class=\"ui container\"></div>\n</div>\n<div class=\"fourteen wide column\">\n\n    <div v-show=\"loading\" class=\"ui active loader\"></div>\n\n    <div class=\"ui hidden divider\"></div>\n\n    <div class=\"ui grid\">\n        <div class=\"row\">\n            <div class=\"three wide column\"></div>\n\n            <div class=\"ten wide column\">\n\n                <div class=\"ui header\">update check {{name}}</div>\n\n                <edit-form\n                    :form=\"form\"\n                    submit-button-title=\"update check\"\n                    :debug=\"true\"\n                    v-on:submit=\"update\"></edit-form>\n\n                    <div class=\"ui divider\"></div>\n\n                    <div class=\"ui small header\">checkTask.result</div>\n\n                    <div class=\"ui segment\"><pre>{{checkTaskResult | json}}</pre></div>\n\n                    <div class=\"ui small header\">checkTask.rawResult</div>\n\n                    <div class=\"ui segment\"><pre>{{checkTaskRawResult | json}}</pre></div>\n\n                    <div class=\"ui small header\">execTask.result</div>\n\n                    <div class=\"ui segment\"><pre>{{execTaskResult | json}}</pre></div>\n\n            </div>\n\n        </div>\n    </div>\n\n</div>\n<div class=\"one wide column\">\n    <div class=\"ui container\">\n    </div>\n</div>";
+module.exports = "<div class=\"one wide column\">\n    <div class=\"ui container\"></div>\n</div>\n<div class=\"fourteen wide column\">\n\n    <div v-show=\"loading\" class=\"ui active loader\"></div>\n\n    <div class=\"ui hidden divider\"></div>\n\n    <div class=\"ui grid\">\n        <div class=\"row\">\n            <div class=\"three wide column\"></div>\n\n            <div class=\"ten wide column\">\n\n                <div class=\"ui header\">update check {{name}}</div>\n\n                <edit-form\n                    :form=\"form\"\n                    submit-button-title=\"update check\"\n                    :debug=\"true\"\n                    v-on:submit=\"update\"></edit-form>\n\n                    <div class=\"ui divider\"></div>\n\n                    <div class=\"ui small header\">check.data</div>\n\n                    <div class=\"ui segment\"><pre>{{check.data | json}}</pre></div>\n\n                    <div class=\"ui small header\">check.userAnalyzeFn</div>\n\n                    <div class=\"ui segment\"><pre>{{check.userAnalyzeFn}}</pre></div>\n\n                    <div class=\"ui small header\">checkTask.result</div>\n\n                    <div class=\"ui segment\"><pre>{{checkTaskResult | json}}</pre></div>\n\n                    <div class=\"ui small header\">checkTask.rawResult</div>\n\n                    <div class=\"ui segment\"><pre>{{checkTaskRawResult | json}}</pre></div>\n\n                    <div class=\"ui small header\">execTask.result</div>\n\n                    <div class=\"ui segment\"><pre>{{execTaskResult | json}}</pre></div>\n\n            </div>\n\n        </div>\n    </div>\n\n</div>\n<div class=\"one wide column\">\n    <div class=\"ui container\">\n    </div>\n</div>";
 
 /***/ },
 /* 178 */
@@ -55554,6 +55554,7 @@ module.exports = Abstract.extend({
             debugShown: false,
 
             checkTaskResult: null,
+            checkTaskRawResult: null,
             execTaskResult: null
 
         };
@@ -55568,6 +55569,7 @@ module.exports = Abstract.extend({
             .then(function (check) {
                 that.check = check;
                 that.checkTaskResult = _get(check, 'checkTask.result', null);
+                that.checkTaskRawResult = _get(check, 'checkTask.rawResult', null);
                 that.execTaskResult = _get(check, 'execTask.result', null);
                 that.processStatus();
             })
@@ -55657,6 +55659,7 @@ module.exports = Abstract.extend({
     data: function () {
         return {
             name: null,
+            check: null,
             form: {
                 name: null,
                 title: null,
@@ -55664,7 +55667,6 @@ module.exports = Abstract.extend({
                 data: null,
                 userAnalyzeFn: null
             },
-
             checkTaskResult: null,
             checkTaskRawResult: null,
             execTaskResult: null
@@ -55682,6 +55684,7 @@ module.exports = Abstract.extend({
                 that.name = name;
                 that.form = check;
 
+                that.check = check;
                 that.checkTaskResult = _get(check, 'checkTask.result', null);
                 that.checkTaskRawResult = _get(check, 'checkTask.rawResult', null);
                 that.execTaskResult = _get(check, 'execTask.result', null);
@@ -55831,11 +55834,11 @@ _.each(contentComponents, function (component, name) {
 
 var config = {
 
-    base: 'http://localhost:8080/api',
+    base: '/api',
 
     api: {
 
-    },
+    }
 
 };
 

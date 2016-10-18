@@ -22,6 +22,7 @@ module.exports = Abstract.extend({
             debugShown: false,
 
             checkTaskResult: null,
+            checkTaskRawResult: null,
             execTaskResult: null
 
         };
@@ -36,6 +37,7 @@ module.exports = Abstract.extend({
             .then(function (check) {
                 that.check = check;
                 that.checkTaskResult = _get(check, 'checkTask.result', null);
+                that.checkTaskRawResult = _get(check, 'checkTask.rawResult', null);
                 that.execTaskResult = _get(check, 'execTask.result', null);
                 that.processStatus();
             })

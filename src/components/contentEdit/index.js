@@ -8,6 +8,7 @@ module.exports = Abstract.extend({
     data: function () {
         return {
             name: null,
+            check: null,
             form: {
                 name: null,
                 title: null,
@@ -15,7 +16,6 @@ module.exports = Abstract.extend({
                 data: null,
                 userAnalyzeFn: null
             },
-
             checkTaskResult: null,
             checkTaskRawResult: null,
             execTaskResult: null
@@ -33,6 +33,7 @@ module.exports = Abstract.extend({
                 that.name = name;
                 that.form = check;
 
+                that.check = check;
                 that.checkTaskResult = _get(check, 'checkTask.result', null);
                 that.checkTaskRawResult = _get(check, 'checkTask.rawResult', null);
                 that.execTaskResult = _get(check, 'execTask.result', null);
