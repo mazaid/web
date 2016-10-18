@@ -10,7 +10,11 @@
         <button class="ui icon button" v-on:click="add"><i class="ui plus icon"></i></button>
     </div>
 
-    <check-list v-ref:checks :checks="checks"></check-list>
+    <div class="ui input">
+      <input type="text" placeholder="Search by name, title" v-model="filterByName">
+    </div>
+
+    <check-list v-ref:checks :checks="checks" :filter-by-name="filterByName"></check-list>
 </div>
 <div class="one wide column">
     <div class="ui container">

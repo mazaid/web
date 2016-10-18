@@ -8,7 +8,8 @@ module.exports = Abstract.extend({
     template: require('./list.html'),
 
     props: {
-        checks: []
+        checks: [],
+        filterByName: null
     },
 
     events: {
@@ -30,7 +31,8 @@ module.exports = Abstract.extend({
             props: {
                 item: null,
                 over: false,
-                started: false
+                started: false,
+                hasUserAnalyzeFn: false
             },
 
             methods: {
@@ -62,6 +64,10 @@ module.exports = Abstract.extend({
             ready: function () {
                 if (this.item.checkTask && this.item.checkTask.status !== 'finished') {
                     this.started = true;
+                }
+
+                if (this.item && this.item.userAnalyzeFn) {
+                    this.hasUserAnalyzeFn = true;
                 }
             },
 

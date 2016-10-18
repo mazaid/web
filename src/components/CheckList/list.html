@@ -1,8 +1,7 @@
 <table class="ui selectable celled table" v-if="checks.length">
         <thead>
             <tr>
-                <th class="two wide">name</th>
-                <th class="two wide">title</th>
+                <th class="three wide">name / title</th>
                 <th class="two wide">checker</th>
                 <th class="three wide">last check</th>
                 <th>message</th>
@@ -11,8 +10,9 @@
         </thead>
         <tbody
             is="item"
-            v-for="item in checks"
+            v-for="item in checks| filterBy filterByName in 'name' 'title'"
             :item="item"
+
         </tbody>
 
 </table>

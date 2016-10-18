@@ -7,7 +7,8 @@ module.exports = Abstract.extend({
     data: function() {
         return {
             loading: false,
-            checks: []
+            checks: [],
+            filterByName: null
         };
     },
 

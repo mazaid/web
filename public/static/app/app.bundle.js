@@ -45374,13 +45374,13 @@ module.exports = "<style>\n    #data, #userAnalyzeFn {\n        position: absolu
 /* 171 */
 /***/ function(module, exports) {
 
-module.exports = "<tr :class=\"{positive: status === 'pass', negative: status === 'fail', warning: status === 'warn'}\" v-on:mouseover=\"mouseover\" v-on:mouseleave=\"mouseleave\">\n    <td>\n        <a href=\"/checks/{{item.name}}\" v-on:click=\"navigate($event)\">{{item.name}}</a>\n    </td>\n    <td>\n        {{item.title}}\n    </td>\n    <td>\n        {{item.checker}}\n    </td>\n    <td>\n        <div v-show=\"started\" class=\"ui active mini inline loader\"></div>\n        <span><strong>{{status}}</strong> {{finishDate}}</span>\n    </td>\n    <td>\n        {{message}}\n    </td>\n    <td>\n        <i v-show=\"over && !started\" class=\"play icon\" style=\"cursor: pointer;\" v-on:click=\"start\"></i>\n        <i v-show=\"over\" class=\"pencil icon\" style=\"cursor: pointer;\" v-on:click=\"edit\"></i>\n        <!-- <button v-show=\"over\" class=\"ui icon small button\"><i class=\"play icon\"></i></button> -->\n    </td>\n\n</tr>\n\n<!-- <tr><td>{{item | json}}</td></tr> -->";
+module.exports = "<tr :class=\"{positive: status === 'pass', negative: status === 'fail', warning: status === 'warn'}\" v-on:mouseover=\"mouseover\" v-on:mouseleave=\"mouseleave\">\n    <td>\n        <a href=\"/checks/{{item.name}}\" v-on:click=\"navigate($event)\">{{item.name}}</a>\n        <i class=\"user icon\" v-show=\"hasUserAnalyzeFn\" alt=\"check has userAnalyzeFn\"></i>\n        <br>\n        <small>{{item.title}}</small>\n    </td>\n    <td>\n        {{item.checker}}\n    </td>\n    <td>\n        <div v-show=\"started\" class=\"ui active mini inline loader\"></div>\n        <span><strong>{{status}}</strong> {{finishDate}}</span>\n    </td>\n    <td>\n        {{message}}\n    </td>\n    <td>\n        <i v-show=\"over && !started\" class=\"play icon\" style=\"cursor: pointer;\" v-on:click=\"start\"></i>\n        <i v-show=\"over\" class=\"pencil icon\" style=\"cursor: pointer;\" v-on:click=\"edit\"></i>\n        <!-- <button v-show=\"over\" class=\"ui icon small button\"><i class=\"play icon\"></i></button> -->\n    </td>\n\n</tr>\n\n<!-- <tr><td>{{item | json}}</td></tr> -->";
 
 /***/ },
 /* 172 */
 /***/ function(module, exports) {
 
-module.exports = "<table class=\"ui selectable celled table\" v-if=\"checks.length\">\n        <thead>\n            <tr>\n                <th class=\"two wide\">name</th>\n                <th class=\"two wide\">title</th>\n                <th class=\"two wide\">checker</th>\n                <th class=\"three wide\">last check</th>\n                <th>message</th>\n                <th class=\"one wide\"></th>\n            </tr>\n        </thead>\n        <tbody\n            is=\"item\"\n            v-for=\"item in checks\"\n            :item=\"item\"\n        </tbody>\n\n</table>\n";
+module.exports = "<table class=\"ui selectable celled table\" v-if=\"checks.length\">\n        <thead>\n            <tr>\n                <th class=\"three wide\">name / title</th>\n                <th class=\"two wide\">checker</th>\n                <th class=\"three wide\">last check</th>\n                <th>message</th>\n                <th class=\"one wide\"></th>\n            </tr>\n        </thead>\n        <tbody\n            is=\"item\"\n            v-for=\"item in checks| filterBy filterByName in 'name' 'title'\"\n            :item=\"item\"\n\n        </tbody>\n\n</table>";
 
 /***/ },
 /* 173 */
@@ -45404,7 +45404,7 @@ module.exports = "<div class=\"one wide column\">\n    <div class=\"ui container
 /* 176 */
 /***/ function(module, exports) {
 
-module.exports = "<div class=\"two wide column\">\n    <div class=\"ui container\">\n\n    </div>\n</div>\n<div class=\"twelve wide column\">\n    <div class=\"ui container\">\n\n        <div v-show=\"loading\" class=\"ui active loader\"></div>\n\n        <div class=\"ui hidden divider\"></div>\n\n        <h2>{{check.title}} <small>({{check.name}})</small></h2>\n\n        <h3>Last check</h3>\n\n        <div class=\"ui segments\">\n            <div class=\"ui clearing segment\" :class=\"{'red': isFail, 'green': isPass, 'yellow': isWarn, 'inverted': (isPass || isFail || isWarn) }\">\n                <div class=\"ui left floated large header\">{{status}} {{finishDate}}</div>\n            </div>\n            <div v-show=\"message\" class=\"ui clearing segment\" :class=\"{'red': isFail, 'green': isPass, 'yellow': isWarn, 'inverted': (isPass || isFail || isWarn) }\">\n                <div class=\"ui left floated small header\">{{message}}</div>\n            </div>\n        </div>\n\n        <div class=\"ui divider\"></div>\n\n        <div class=\"ui small header\">check.data</div>\n\n        <div class=\"ui segment\"><pre>{{check.data | json}}</pre></div>\n\n        <div class=\"ui small header\">userAnalyzeFn</div>\n\n        <div class=\"ui segment\"><pre>{{check.userAnalyzeFn}}</pre></div>\n\n        <div class=\"ui small header\">checkTask.result</div>\n\n        <div class=\"ui segment\"><pre>{{checkTaskResult | json}}</pre></div>\n\n        <div class=\"ui small header\">checkTask.rawResult</div>\n\n        <div class=\"ui segment\"><pre>{{checkTaskRawResult | json}}</pre></div>\n\n        <div class=\"ui small header\">execTask.result</div>\n\n        <div class=\"ui segment\"><pre>{{execTaskResult | json}}</pre></div>\n\n        <button class=\"ui button\" v-on:click=\"toggleDebug\">debug</button>\n\n        <div class=\"ui segment\" v-show=\"debugShown\"><pre>{{check | json}}</pre></div>\n\n    </div>\n</div>\n<div class=\"two wide column\">\n    <div class=\"ui container\">\n\n    </div>\n</div>";
+module.exports = "<div class=\"two wide column\">\n    <div class=\"ui container\">\n\n    </div>\n</div>\n<div class=\"twelve wide column\">\n    <div class=\"ui container\">\n\n        <div v-show=\"loading\" class=\"ui active loader\"></div>\n\n        <div class=\"ui hidden divider\"></div>\n\n        <h2>{{check.title}} <small>({{check.name}})</small></h2>\n\n        <h3>Last check</h3>\n\n        <div class=\"ui segments\">\n            <div class=\"ui clearing segment\" :class=\"{'red': isFail, 'green': isPass, 'yellow': isWarn, 'inverted': (isPass || isFail || isWarn) }\">\n                <div class=\"ui left floated large header\">{{status}} {{finishDate}}</div>\n            </div>\n            <div v-show=\"message\" class=\"ui clearing segment\" :class=\"{'red': isFail, 'green': isPass, 'yellow': isWarn, 'inverted': (isPass || isFail || isWarn) }\">\n                <div class=\"ui left floated small header\">{{message}}</div>\n            </div>\n        </div>\n\n        <button class=\"ui icon button\" v-on:click=\"edit($event)\"><i class=\"icon pencil\"></i>edit</button>\n\n        <div class=\"ui divider\"></div>\n\n        <div class=\"ui small header\">check.data</div>\n\n        <div class=\"ui segment\"><pre>{{check.data | json}}</pre></div>\n\n        <div class=\"ui small header\">userAnalyzeFn</div>\n\n        <div class=\"ui segment\"><pre>{{check.userAnalyzeFn}}</pre></div>\n\n        <div class=\"ui small header\">checkTask.result</div>\n\n        <div class=\"ui segment\"><pre>{{checkTaskResult | json}}</pre></div>\n\n        <div class=\"ui small header\">checkTask.rawResult</div>\n\n        <div class=\"ui segment\"><pre>{{checkTaskRawResult | json}}</pre></div>\n\n        <div class=\"ui small header\">execTask.result</div>\n\n        <div class=\"ui segment\"><pre>{{execTaskResult | json}}</pre></div>\n\n        <button class=\"ui button\" v-on:click=\"toggleDebug\">debug</button>\n\n        <div class=\"ui segment\" v-show=\"debugShown\"><pre>{{check | json}}</pre></div>\n\n    </div>\n</div>\n<div class=\"two wide column\">\n    <div class=\"ui container\">\n\n    </div>\n</div>";
 
 /***/ },
 /* 177 */
@@ -45422,7 +45422,7 @@ module.exports = "<div class=\"two wide column\">\n    <div class=\"ui container
 /* 179 */
 /***/ function(module, exports) {
 
-module.exports = "<div class=\"one wide column\">\n    <div class=\"ui container\"></div>\n</div>\n<div class=\"fourteen wide column\">\n    <div v-show=\"loading\" class=\"ui active loader\"></div>\n    <div class=\"ui hidden divider\"></div>\n\n    <div class=\"ui icon buttons\">\n        <button class=\"ui icon green button\" v-on:click=\"refresh\"><i class=\"ui refresh icon\"></i></button>\n        <button class=\"ui icon button\" v-on:click=\"add\"><i class=\"ui plus icon\"></i></button>\n    </div>\n\n    <check-list v-ref:checks :checks=\"checks\"></check-list>\n</div>\n<div class=\"one wide column\">\n    <div class=\"ui container\">\n    </div>\n</div>";
+module.exports = "<div class=\"one wide column\">\n    <div class=\"ui container\"></div>\n</div>\n<div class=\"fourteen wide column\">\n    <div v-show=\"loading\" class=\"ui active loader\"></div>\n    <div class=\"ui hidden divider\"></div>\n\n    <div class=\"ui icon buttons\">\n        <button class=\"ui icon green button\" v-on:click=\"refresh\"><i class=\"ui refresh icon\"></i></button>\n        <button class=\"ui icon button\" v-on:click=\"add\"><i class=\"ui plus icon\"></i></button>\n    </div>\n\n    <div class=\"ui input\">\n      <input type=\"text\" placeholder=\"Search by name, title\" v-model=\"filterByName\">\n    </div>\n\n    <check-list v-ref:checks :checks=\"checks\" :filter-by-name=\"filterByName\"></check-list>\n</div>\n<div class=\"one wide column\">\n    <div class=\"ui container\">\n    </div>\n</div>";
 
 /***/ },
 /* 180 */
@@ -55368,7 +55368,8 @@ module.exports = Abstract.extend({
     template: __webpack_require__(172),
 
     props: {
-        checks: []
+        checks: [],
+        filterByName: null
     },
 
     events: {
@@ -55390,7 +55391,8 @@ module.exports = Abstract.extend({
             props: {
                 item: null,
                 over: false,
-                started: false
+                started: false,
+                hasUserAnalyzeFn: false
             },
 
             methods: {
@@ -55422,6 +55424,10 @@ module.exports = Abstract.extend({
             ready: function () {
                 if (this.item.checkTask && this.item.checkTask.status !== 'finished') {
                     this.started = true;
+                }
+
+                if (this.item && this.item.userAnalyzeFn) {
+                    this.hasUserAnalyzeFn = true;
                 }
             },
 
@@ -55608,6 +55614,11 @@ module.exports = Abstract.extend({
                     this.isWarn = true;
                     break;
             }
+        },
+
+        edit: function (event) {
+            event.preventDefault();
+            this.loadUrl('/edit/' + this.check.name);
         }
     },
 
@@ -55756,7 +55767,8 @@ module.exports = Abstract.extend({
     data: function() {
         return {
             loading: false,
-            checks: []
+            checks: [],
+            filterByName: null
         };
     },
 

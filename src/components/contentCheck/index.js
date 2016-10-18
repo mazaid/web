@@ -76,6 +76,11 @@ module.exports = Abstract.extend({
                     this.isWarn = true;
                     break;
             }
+        },
+
+        edit: function (event) {
+            event.preventDefault();
+            this.loadUrl('/edit/' + this.check.name);
         }
     },
 

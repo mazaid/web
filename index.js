@@ -6,7 +6,7 @@ var config = {
     host: null,
     port: 8081,
     feConfig: {
-        base: 'http://localhost:8089'
+        base: 'http://localhost:8080/api'
     }
 };
 
