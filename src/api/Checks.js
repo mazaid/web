@@ -54,7 +54,7 @@ var Checks = Abstract.extends({
 
     },
 
-    find: function (filters) {
+    find: function (query) {
 
         var that = this;
 
@@ -63,7 +63,7 @@ var Checks = Abstract.extends({
             var request = superagent.get(that._base + '/checks');
 
             if (filters) {
-                request.query(filters);
+                request.query(query);
             }
 
             request.end(function (err, res) {

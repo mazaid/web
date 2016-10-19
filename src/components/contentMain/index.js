@@ -37,7 +37,8 @@ module.exports = Abstract.extend({
             var query = {
                 withCheckTasks: {
                     fields: 'id, checkId, status, result, timeout, startDate, finishDate'
-                }
+                },
+                limit: 100
             };
 
             this.getApi().checks.find(query)
