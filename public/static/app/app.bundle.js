@@ -55265,7 +55265,7 @@ var Checks = Abstract.extends({
 
             var request = superagent.get(that._base + '/checks');
 
-            if (filters) {
+            if (query) {
                 request.query(query);
             }
 
