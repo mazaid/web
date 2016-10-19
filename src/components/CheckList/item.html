@@ -10,7 +10,11 @@
     </td>
     <td>
         <div v-show="started" class="ui active mini inline loader"></div>
-        <span><strong>{{status}}</strong> {{finishDate}}</span>
+        <span>
+            <i class="icon checkmark" v-show="status === 'pass'"></i>
+            <i class="icon close" v-show="status === 'fail'"></i>
+            <i class="attention icon" v-show="status === 'warn'"></i>
+            <strong>{{status}}</strong> {{finishDate}}</span>
     </td>
     <td>
         {{message}}
