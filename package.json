@@ -5,7 +5,8 @@
   "main": "index.js",
   "files": [
     "index.js",
-    "public"
+    "public",
+    "config.default.json"
   ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -24,7 +25,8 @@
   },
   "homepage": "https://github.com/mazaid/web#readme",
   "dependencies": {
-    "express": "4.14.0"
+    "express": "4.14.0",
+    "nprof": "^0.5.0"
   },
   "devDependencies": {
     "bluebird": "3.4.6",

@@ -1,0 +1,13 @@
+{
+    "host": null,
+    "port": 8081,
+
+    "feConfig": {
+        "base": "http://localhost:8080/api"
+    },
+
+    "nprof": {
+        "snapshotPath": "/data/tmp/mazaid/web"
+    }
+
+}
