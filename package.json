@@ -6,7 +6,8 @@
   "files": [
     "index.js",
     "public",
-    "config.default.json"
+    "config.default.js",
+    "config.schema.js"
   ],
   "scripts": {
     "config": "node ./config.default.js",
