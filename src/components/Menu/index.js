@@ -9,7 +9,7 @@ module.exports = Abstract.extend({
     props: {
     },
 
-    ready: function() {
+    ready: function () {
 
     },
 

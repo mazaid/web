@@ -16,7 +16,7 @@ module.exports = Abstract.extend({
 
     },
 
-    ready: function() {
+    ready: function () {
 
     },
 

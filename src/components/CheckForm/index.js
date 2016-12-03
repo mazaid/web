@@ -21,7 +21,7 @@ module.exports = Abstract.extend({
         showDebug: false
     },
 
-    data: function() {
+    data: function () {
         return {
             dataStringValue: null
         };
@@ -29,7 +29,7 @@ module.exports = Abstract.extend({
 
     watch: {
 
-        form: function() {
+        form: function () {
             if (this.form.data) {
                 this.dataStringValue = JSON.stringify(this.form.data, null, '    ');
                 this._editor.setValue(this.dataStringValue, -1);
@@ -42,7 +42,7 @@ module.exports = Abstract.extend({
 
     },
 
-    ready: function() {
+    ready: function () {
 
         var that = this;
 
@@ -58,7 +58,7 @@ module.exports = Abstract.extend({
             this._editor.setValue(this.dataStringValue, -1);
         }
 
-        this._editor.on('change', function() {
+        this._editor.on('change', function () {
             that.dataStringValue = that._editor.getValue();
 
             try {
@@ -79,7 +79,7 @@ module.exports = Abstract.extend({
             this._userAnalyzeFnEditor.setValue(this.form.userAnalyzeFn, -1);
         }
 
-        this._userAnalyzeFnEditor.on('change', function() {
+        this._userAnalyzeFnEditor.on('change', function () {
             var value = that._userAnalyzeFnEditor.getValue();
 
             if (typeof value === 'string') {
@@ -101,7 +101,7 @@ module.exports = Abstract.extend({
             event.preventDefault();
         },
 
-        submit: function(event) {
+        submit: function (event) {
             event.preventDefault();
             this.$emit('submit', this.form);
         },

@@ -1,6 +1,6 @@
 var _ = require('lodash');
 
-module.exports = function(config) {
+module.exports = function (config) {
 
     var classes = {
         Checks: require('./Checks')

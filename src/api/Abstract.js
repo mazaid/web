@@ -1,7 +1,7 @@
 var _ = require('lodash/core');
 var request = require('superagent');
 
-function Abstract(config, api) {
+function Abstract (config, api) {
     this._config = config;
     this._base = config.base;
     this._api = api;
@@ -26,7 +26,7 @@ Abstract.prototype.getUser = function () {
     return this.user;
 };
 
-Abstract.prototype.GET = function(url, query, options) {
+Abstract.prototype.GET = function (url, query, options) {
 
     if (this.authToken) {
         if (!query) {
@@ -36,14 +36,14 @@ Abstract.prototype.GET = function(url, query, options) {
         query.authToken = this.authToken;
     }
 
-    return new Promise(function(resolve, reject) {
+    return new Promise(function (resolve, reject) {
         var r = request.get(url);
 
         if (query) {
             r.query(query);
         }
 
-        r.end(function(err, res) {
+        r.end(function (err, res) {
             if (err) {
                 return reject(err);
             }
@@ -57,7 +57,7 @@ Abstract.prototype.GET = function(url, query, options) {
 
 };
 
-Abstract.prototype.POST = function(url, body, options) {
+Abstract.prototype.POST = function (url, body, options) {
 
     if (this.authToken) {
 
@@ -68,14 +68,14 @@ Abstract.prototype.POST = function(url, body, options) {
         body.authToken = this.authToken;
     }
 
-    return new Promise(function(resolve, reject) {
+    return new Promise(function (resolve, reject) {
         var r = request.post(url);
 
         if (body) {
             r.send(body);
         }
 
-        r.end(function(err, res) {
+        r.end(function (err, res) {
             if (err) {
                 return reject(err);
             }
@@ -89,7 +89,7 @@ Abstract.prototype.POST = function(url, body, options) {
 
 };
 
-Abstract.prototype.DELETE = function(url, body) {
+Abstract.prototype.DELETE = function (url, body) {
 
     if (this.authToken) {
 
@@ -100,14 +100,14 @@ Abstract.prototype.DELETE = function(url, body) {
         body.authToken = this.authToken;
     }
 
-    return new Promise(function(resolve, reject) {
+    return new Promise(function (resolve, reject) {
         var r = request.delete(url);
 
         if (body) {
             r.send(body);
         }
 
-        r.end(function(err, res) {
+        r.end(function (err, res) {
             if (err) {
                 return reject(err);
             }
@@ -124,7 +124,7 @@ Abstract.prototype.DELETE = function(url, body) {
 module.exports = {
     class: Abstract,
 
-    extend: function(constr) {
+    extend: function (constr) {
 
         constr.prototype = _.create(Abstract.prototype, {
             'constructor': constr

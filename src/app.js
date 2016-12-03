@@ -34,7 +34,7 @@ request.get('/feConfig')
         init(config);
     });
 
-function init(config) {
+function init (config) {
 
     var Api = require('./api');
 

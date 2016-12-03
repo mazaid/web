@@ -9,7 +9,7 @@ var Chain = require('maf/Chain');
 
 var Checks = Abstract.extends({
 
-    constructor: function(config) {
+    constructor: function (config) {
         Abstract.class.call(this, config);
 
         this._combine = createCombine([
@@ -25,7 +25,7 @@ var Checks = Abstract.extends({
         ]);
     },
 
-    getByName(name) {
+    getByName (name) {
 
         var that = this;
 
@@ -45,7 +45,7 @@ var Checks = Abstract.extends({
                 var check = res.body.result;
 
                 check.checkTask = _.get(res.body, 'metadata.checkTask', null);
-                check.execTask  = _.get(res.body, 'metadata.execTask', null);
+                check.execTask = _.get(res.body, 'metadata.execTask', null);
 
                 resolve(check);
 
@@ -126,25 +126,25 @@ var Checks = Abstract.extends({
     },
 
     update: function (name, data) {
-    var that = this;
+        var that = this;
 
-    return new Promise(function (resolve, reject) {
-        var request = superagent.patch(that._base + '/checks/' + name);
+        return new Promise(function (resolve, reject) {
+            var request = superagent.patch(that._base + '/checks/' + name);
 
-        request.send(data);
+            request.send(data);
 
-        request.end(function (err, res) {
-            if (err) {
-                return reject(err);
-            }
+            request.end(function (err, res) {
+                if (err) {
+                    return reject(err);
+                }
 
-            var body = res.body;
+                var body = res.body;
 
-            resolve(res.body.result);
+                resolve(res.body.result);
+            });
         });
-    });
 
-}
+    }
 
 });
 

@@ -4,7 +4,7 @@ var moment = require('moment');
 module.exports = Abstract.extend({
     template: require('./main.html'),
 
-    data: function() {
+    data: function () {
         return {
             loading: false,
             checks: [],
@@ -12,7 +12,7 @@ module.exports = Abstract.extend({
         };
     },
 
-    ready: function() {
+    ready: function () {
         var that = this;
 
         var req = this.getRequest();

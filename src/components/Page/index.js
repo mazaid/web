@@ -10,7 +10,7 @@ module.exports = Abstract.extend({
         contentComponentName: null
     },
 
-    data: function() {
+    data: function () {
         return {
 
         };

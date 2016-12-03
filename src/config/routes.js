@@ -15,8 +15,8 @@ module.exports = [
         component: 'add-page'
     },
     {
-    route: '/edit/:name',
-    method: 'get',
-    component: 'edit-page'
-}
+        route: '/edit/:name',
+        method: 'get',
+        component: 'edit-page'
+    }
 ];

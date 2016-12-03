@@ -1,6 +1,6 @@
 // var fs = require('fs');
 
-var Abstract =  {
+var Abstract = {
 
     methods: {
 

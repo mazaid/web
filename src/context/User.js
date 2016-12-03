@@ -1,7 +1,7 @@
-function User() {
+function User () {
     this._user = null;
     this._authToken = null;
-};
+}
 
 User.prototype.isAuth = function () {
     return (this._user) ? true : false;

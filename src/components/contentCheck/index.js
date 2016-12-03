@@ -6,7 +6,7 @@ var _get = require('lodash/get');
 module.exports = Abstract.extend({
     template: require('./check.html'),
 
-    data: function() {
+    data: function () {
         return {
             loading: false,
 
@@ -28,7 +28,7 @@ module.exports = Abstract.extend({
         };
     },
 
-    ready: function() {
+    ready: function () {
         var that = this;
 
         var req = this.getRequest();
