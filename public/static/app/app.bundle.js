@@ -4244,7 +4244,7 @@ webpackJsonp([0,1],[
 
 // var fs = require('fs');
 
-var Abstract =  {
+var Abstract = {
 
     methods: {
 
@@ -33917,7 +33917,7 @@ module.exports = Abstract.extend({
         showDebug: false
     },
 
-    data: function() {
+    data: function () {
         return {
             dataStringValue: null
         };
@@ -33925,7 +33925,7 @@ module.exports = Abstract.extend({
 
     watch: {
 
-        form: function() {
+        form: function () {
             if (this.form.data) {
                 this.dataStringValue = JSON.stringify(this.form.data, null, '    ');
                 this._editor.setValue(this.dataStringValue, -1);
@@ -33938,7 +33938,7 @@ module.exports = Abstract.extend({
 
     },
 
-    ready: function() {
+    ready: function () {
 
         var that = this;
 
@@ -33954,7 +33954,7 @@ module.exports = Abstract.extend({
             this._editor.setValue(this.dataStringValue, -1);
         }
 
-        this._editor.on('change', function() {
+        this._editor.on('change', function () {
             that.dataStringValue = that._editor.getValue();
 
             try {
@@ -33975,7 +33975,7 @@ module.exports = Abstract.extend({
             this._userAnalyzeFnEditor.setValue(this.form.userAnalyzeFn, -1);
         }
 
-        this._userAnalyzeFnEditor.on('change', function() {
+        this._userAnalyzeFnEditor.on('change', function () {
             var value = that._userAnalyzeFnEditor.getValue();
 
             if (typeof value === 'string') {
@@ -33997,7 +33997,7 @@ module.exports = Abstract.extend({
             event.preventDefault();
         },
 
-        submit: function(event) {
+        submit: function (event) {
             event.preventDefault();
             this.$emit('submit', this.form);
         },
@@ -45034,7 +45034,7 @@ module.exports = Vue;
 
 var _ = __webpack_require__(12);
 
-module.exports = function(config) {
+module.exports = function (config) {
 
     var classes = {
         Checks: __webpack_require__(281)
@@ -45064,7 +45064,7 @@ module.exports = Abstract.extend({
         contentComponentName: null
     },
 
-    data: function() {
+    data: function () {
         return {
 
         };
@@ -45112,10 +45112,10 @@ module.exports = [
         component: 'add-page'
     },
     {
-    route: '/edit/:name',
-    method: 'get',
-    component: 'edit-page'
-}
+        route: '/edit/:name',
+        method: 'get',
+        component: 'edit-page'
+    }
 ];
 
 
@@ -52159,10 +52159,26 @@ module.exports = unset;
 "use strict";
 'use strict';
 
-
+/**
+ * Data chain object
+ *
+ * @example
+ * var Chain = require('maf/Chain');
+ * var chain = new Chain({limit: {defaults: 5}, skip: null});
+ * chain.onExec((data) => {console.log(data);});
+ *
+ * chain.skip(5).limit(10).exec(); // get data in onExec callback
+ * // OR
+ * var data = chain.skip(5).limit(10).data();
+ *
+ *
+ */
 class Chain {
 
-    constructor(config) {
+    /**
+     * @param {Object} config
+     */
+    constructor (config) {
 
         this._config = config;
 
@@ -52174,11 +52190,25 @@ class Chain {
 
     }
 
-    _init() {
+    /**
+     * return collected data
+     *
+     * @return {Object}
+     */
+    get data () {
+        return this._data;
+    }
+
+    /**
+     * init chain by config
+     *
+     * @private
+     */
+    _init () {
         var that = this;
 
-        var makeSimpleStep = function(stepName) {
-            return function(value) {
+        var makeSimpleStep = function (stepName) {
+            return function (value) {
                 if (value) {
                     this._data[stepName] = value;
                 }
@@ -52189,8 +52219,14 @@ class Chain {
 
         var makeFunctionStep = function (stepName, step) {
 
-            return function(value) {
-                value = step.call(this, value);
+            return function () {
+                var args = [this._data];
+
+                for (var i in arguments) {
+                    args.push(arguments[i]);
+                }
+
+                var value = step.apply(this, args);
 
                 if (typeof value !== 'undefined') {
                     this._data[stepName] = value;
@@ -52201,6 +52237,10 @@ class Chain {
 
         };
 
+        if (typeof this._config.defaults === 'object') {
+            this._data = JSON.parse(JSON.stringify(this._config.defaults));
+        }
+
         for (var name in this._config.steps) {
 
             var step = this._config.steps[name];
@@ -52208,18 +52248,19 @@ class Chain {
             if (typeof step === 'function') {
                 that[name] = makeFunctionStep(name, step);
             } else {
-                if (typeof step !== 'undefined' && step !== null) {
-                    that._data[name] = step;
-                }
-
                 that[name] = makeSimpleStep(name);
-                // throw new Error('unknown step value in maf/Chain for step: ' + name);
             }
 
         }
     }
 
-    mapToChain(data) {
+    /**
+     * map data to chain
+     *
+     * @param {Object} data
+     * @return {this}
+     */
+    mapToChain (data) {
 
         for (var name in data) {
             if (!this[name]) {
@@ -52232,20 +52273,35 @@ class Chain {
         return this;
     }
 
-    onExec(callback) {
+    /**
+     * set exec callback
+     *
+     * @param {Function} callback
+     */
+    onExec (callback) {
         this._execCallback = callback;
     }
 
-    get data() {
-        return this._data;
-    }
-
-    exec() {
+    /**
+     * exec onExec callback
+     *
+     * @return {*}
+     */
+    exec () {
         if (!this._execCallback) {
-            throw new Error('no callback for ' + this.constructor.name);
+            return this._data;
         }
 
         return this._execCallback(this._data);
+    }
+
+    /**
+     * alias for exec
+     *
+     * @return {*}
+     */
+    done () {
+        return this.exec();
     }
 
 }
@@ -55053,7 +55109,7 @@ Emitter.prototype.hasListeners = function(event){
 var _ = __webpack_require__(260);
 var request = __webpack_require__(19);
 
-function Abstract(config, api) {
+function Abstract (config, api) {
     this._config = config;
     this._base = config.base;
     this._api = api;
@@ -55078,7 +55134,7 @@ Abstract.prototype.getUser = function () {
     return this.user;
 };
 
-Abstract.prototype.GET = function(url, query, options) {
+Abstract.prototype.GET = function (url, query, options) {
 
     if (this.authToken) {
         if (!query) {
@@ -55088,14 +55144,14 @@ Abstract.prototype.GET = function(url, query, options) {
         query.authToken = this.authToken;
     }
 
-    return new Promise(function(resolve, reject) {
+    return new Promise(function (resolve, reject) {
         var r = request.get(url);
 
         if (query) {
             r.query(query);
         }
 
-        r.end(function(err, res) {
+        r.end(function (err, res) {
             if (err) {
                 return reject(err);
             }
@@ -55109,7 +55165,7 @@ Abstract.prototype.GET = function(url, query, options) {
 
 };
 
-Abstract.prototype.POST = function(url, body, options) {
+Abstract.prototype.POST = function (url, body, options) {
 
     if (this.authToken) {
 
@@ -55120,14 +55176,14 @@ Abstract.prototype.POST = function(url, body, options) {
         body.authToken = this.authToken;
     }
 
-    return new Promise(function(resolve, reject) {
+    return new Promise(function (resolve, reject) {
         var r = request.post(url);
 
         if (body) {
             r.send(body);
         }
 
-        r.end(function(err, res) {
+        r.end(function (err, res) {
             if (err) {
                 return reject(err);
             }
@@ -55141,7 +55197,7 @@ Abstract.prototype.POST = function(url, body, options) {
 
 };
 
-Abstract.prototype.DELETE = function(url, body) {
+Abstract.prototype.DELETE = function (url, body) {
 
     if (this.authToken) {
 
@@ -55152,14 +55208,14 @@ Abstract.prototype.DELETE = function(url, body) {
         body.authToken = this.authToken;
     }
 
-    return new Promise(function(resolve, reject) {
+    return new Promise(function (resolve, reject) {
         var r = request.delete(url);
 
         if (body) {
             r.send(body);
         }
 
-        r.end(function(err, res) {
+        r.end(function (err, res) {
             if (err) {
                 return reject(err);
             }
@@ -55176,7 +55232,7 @@ Abstract.prototype.DELETE = function(url, body) {
 module.exports = {
     class: Abstract,
 
-    extend: function(constr) {
+    extend: function (constr) {
 
         constr.prototype = _.create(Abstract.prototype, {
             'constructor': constr
@@ -55212,7 +55268,7 @@ var Chain = __webpack_require__(270);
 
 var Checks = Abstract.extends({
 
-    constructor: function(config) {
+    constructor: function (config) {
         Abstract.class.call(this, config);
 
         this._combine = createCombine([
@@ -55228,7 +55284,7 @@ var Checks = Abstract.extends({
         ]);
     },
 
-    getByName(name) {
+    getByName (name) {
 
         var that = this;
 
@@ -55248,7 +55304,7 @@ var Checks = Abstract.extends({
                 var check = res.body.result;
 
                 check.checkTask = _.get(res.body, 'metadata.checkTask', null);
-                check.execTask  = _.get(res.body, 'metadata.execTask', null);
+                check.execTask = _.get(res.body, 'metadata.execTask', null);
 
                 resolve(check);
 
@@ -55329,25 +55385,25 @@ var Checks = Abstract.extends({
     },
 
     update: function (name, data) {
-    var that = this;
+        var that = this;
 
-    return new Promise(function (resolve, reject) {
-        var request = superagent.patch(that._base + '/checks/' + name);
+        return new Promise(function (resolve, reject) {
+            var request = superagent.patch(that._base + '/checks/' + name);
 
-        request.send(data);
+            request.send(data);
 
-        request.end(function (err, res) {
-            if (err) {
-                return reject(err);
-            }
+            request.end(function (err, res) {
+                if (err) {
+                    return reject(err);
+                }
 
-            var body = res.body;
+                var body = res.body;
 
-            resolve(res.body.result);
+                resolve(res.body.result);
+            });
         });
-    });
 
-}
+    }
 
 });
 
@@ -55376,7 +55432,7 @@ module.exports = Abstract.extend({
 
     },
 
-    ready: function() {
+    ready: function () {
 
     },
 
@@ -55477,7 +55533,7 @@ module.exports = Abstract.extend({
     props: {
     },
 
-    ready: function() {
+    ready: function () {
 
     },
 
@@ -55544,7 +55600,7 @@ var _get = __webpack_require__(3);
 module.exports = Abstract.extend({
     template: __webpack_require__(176),
 
-    data: function() {
+    data: function () {
         return {
             loading: false,
 
@@ -55566,7 +55622,7 @@ module.exports = Abstract.extend({
         };
     },
 
-    ready: function() {
+    ready: function () {
         var that = this;
 
         var req = this.getRequest();
@@ -55764,7 +55820,7 @@ var moment = __webpack_require__(0);
 module.exports = Abstract.extend({
     template: __webpack_require__(179),
 
-    data: function() {
+    data: function () {
         return {
             loading: false,
             checks: [],
@@ -55772,7 +55828,7 @@ module.exports = Abstract.extend({
         };
     },
 
-    ready: function() {
+    ready: function () {
         var that = this;
 
         var req = this.getRequest();
@@ -55861,7 +55917,7 @@ request.get('/feConfig')
         init(config);
     });
 
-function init(config) {
+function init (config) {
 
     var Api = __webpack_require__(157);
 
