@@ -55854,6 +55854,7 @@ module.exports = Abstract.extend({
                 withCheckTasks: {
                     fields: 'id, checkId, status, result, timeout, startDate, finishDate'
                 },
+                active: true,
                 limit: 100
             };
 
