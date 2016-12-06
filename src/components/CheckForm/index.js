@@ -8,8 +8,8 @@ module.exports = Abstract.extend({
             default: {
                 name: null,
                 title: null,
-                checker: null,
-                timeout: 60,
+                checker: 'curl',
+                timeout: 10,
                 data: null,
                 userAnalyzeFn: null
             }

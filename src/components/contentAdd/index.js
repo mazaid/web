@@ -8,8 +8,8 @@ module.exports = Abstract.extend({
             form: {
                 name: null,
                 title: null,
-                checker: 'http',
-                timeout: 60,
+                checker: 'curl',
+                timeout: 10,
                 data: null
             }
         };

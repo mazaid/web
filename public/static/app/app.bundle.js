@@ -33904,8 +33904,8 @@ module.exports = Abstract.extend({
             default: {
                 name: null,
                 title: null,
-                checker: null,
-                timeout: 60,
+                checker: 'curl',
+                timeout: 10,
                 data: null,
                 userAnalyzeFn: null
             }
@@ -34014,6 +34014,7 @@ module.exports = Abstract.extend({
         // }
     }
 });
+
 
 /***/ },
 /* 151 */
@@ -45368,7 +45369,7 @@ module.exports = function (index, step) {
 /* 170 */
 /***/ function(module, exports) {
 
-module.exports = "<style>\n    #data, #userAnalyzeFn {\n        position: absolute;\n        width: 100%;\n        height: 300px;\n    }\n\n    .padding {\n        padding-bottom: 300px;\n    }\n</style>\n\n<form class=\"ui form\" v-on:submit=\"nothing($event)\">\n\n    <div class=\"field\">\n        <label>Name</label>\n        <input type=\"text\" name=\"name\" placeholder=\"Name\" v-model=\"form.name\">\n    </div>\n\n    <div class=\"field\">\n        <label>Title</label>\n        <input type=\"text\" name=\"title\" placeholder=\"Title\" v-model=\"form.title\">\n    </div>\n\n    <div class=\"field\">\n\n        <label>Checker</label>\n\n        <select class=\"ui fluid dropdown\" v-model=\"form.checker\">\n            <option value=\"ping\">ping</option>\n            <option value=\"http\">http</option>\n        </select>\n    </div>\n\n    <div class=\"field\">\n        <label>Timeout in seconds</label>\n        <input type=\"text\" name=\"timeout\" placeholder=\"timeout\" v-model=\"form.timeout\">\n    </div>\n\n    <div class=\"field padding\">\n        <label>Data</label>\n        <div id=\"data\"></div>\n    </div>\n\n    <div class=\"field padding\">\n        <label>User analyze function</label>\n        <div id=\"userAnalyzeFn\"></div>\n    </div>\n\n    <button class=\"ui button\" type=\"submit\" v-on:click=\"submit($event)\">{{submitButtonTitle}}</button>\n\n    <div class=\"ui hidden divider\"></div>\n\n    <button class=\"ui button\" v-if=\"debug\" v-on:click=\"toggleDebug($event)\">debug</button>\n\n    <div v-if=\"debug\" v-show=\"showDebug\">\n        <pre>{{form | json}}</pre>\n    </div>\n\n</form>\n";
+module.exports = "<style>\n    #data, #userAnalyzeFn {\n        position: absolute;\n        width: 100%;\n        height: 300px;\n    }\n\n    .padding {\n        padding-bottom: 300px;\n    }\n</style>\n\n<form class=\"ui form\" v-on:submit=\"nothing($event)\">\n\n    <div class=\"field\">\n        <label>Name</label>\n        <input type=\"text\" name=\"name\" placeholder=\"Name\" v-model=\"form.name\">\n    </div>\n\n    <div class=\"field\">\n        <label>Title</label>\n        <input type=\"text\" name=\"title\" placeholder=\"Title\" v-model=\"form.title\">\n    </div>\n\n    <div class=\"field\">\n\n        <label>Checker</label>\n\n        <select class=\"ui fluid dropdown\" v-model=\"form.checker\">\n            <option value=\"curl\">curl</option>\n            <option value=\"ping\">ping</option>\n            <option value=\"http\">http</option>\n        </select>\n    </div>\n\n    <div class=\"field\">\n        <label>Timeout in seconds</label>\n        <input type=\"text\" name=\"timeout\" placeholder=\"timeout\" v-model=\"form.timeout\">\n    </div>\n\n    <div class=\"field padding\">\n        <label>Data</label>\n        <div id=\"data\"></div>\n    </div>\n\n    <div class=\"field padding\">\n        <label>User analyze function</label>\n        <div id=\"userAnalyzeFn\"></div>\n    </div>\n\n    <button class=\"ui button\" type=\"submit\" v-on:click=\"submit($event)\">{{submitButtonTitle}}</button>\n\n    <div class=\"ui hidden divider\"></div>\n\n    <button class=\"ui button\" v-if=\"debug\" v-on:click=\"toggleDebug($event)\">debug</button>\n\n    <div v-if=\"debug\" v-show=\"showDebug\">\n        <pre>{{form | json}}</pre>\n    </div>\n\n</form>\n";
 
 /***/ },
 /* 171 */
@@ -55557,8 +55558,8 @@ module.exports = Abstract.extend({
             form: {
                 name: null,
                 title: null,
-                checker: 'http',
-                timeout: 60,
+                checker: 'curl',
+                timeout: 10,
                 data: null
             }
         };
