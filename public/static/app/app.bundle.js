@@ -55292,7 +55292,7 @@ var Checks = Abstract.extends({
         return new Promise(function (resolve, reject) {
             var params = {
                 withCheckTasks: true,
-                withExecTasks: true
+                withExecTasks: false
             };
             var request = superagent.get(that._base + '/checks/' + name).query(params);
 
